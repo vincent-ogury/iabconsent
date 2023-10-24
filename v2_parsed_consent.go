@@ -468,3 +468,11 @@ func (p *V2ParsedConsent) MinorVersion() (int, error) {
 		return 100, errors.Errorf("Unsupported TCFPolicyVersion %d", p.TCFPolicyVersion)
 	}
 }
+
+// IsVendorRestricted returns true if the vendor is restricted by PubRestrictionEntry
+func (p *PubRestrictionEntry) IsVendorRestricted(v int) bool {
+	if inRangeEntries(v, p.RestrictionsRange) {
+		return true
+	}
+	return false
+}

@@ -628,6 +628,68 @@ func (v *V2ParsedConsentSuite) TestMinorVersion(c *check.C) {
 	}
 }
 
+func (v *V2ParsedConsentSuite) TestIsPublisherRestricted(c *check.C) {
+	var tcs = []struct {
+		vendor      int
+		restriction *iabconsent.PubRestrictionEntry
+		exp         bool
+	}{
+		{
+			vendor: 123,
+			restriction: &iabconsent.PubRestrictionEntry{
+				PurposeID:       4,
+				RestrictionType: iabconsent.RequireLegitimateInterest,
+				NumEntries:      1,
+				RestrictionsRange: []*iabconsent.RangeEntry{
+					{
+						StartVendorID: 110,
+						EndVendorID:   120,
+					},
+					{
+						StartVendorID: 123,
+						EndVendorID:   123,
+					},
+				},
+			},
+			exp: true,
+		},
+		{
+			vendor: 123,
+			restriction: &iabconsent.PubRestrictionEntry{
+				PurposeID:       3,
+				RestrictionType: iabconsent.RequireConsent,
+				NumEntries:      1,
+				RestrictionsRange: []*iabconsent.RangeEntry{
+					{
+						StartVendorID: 120,
+						EndVendorID:   122,
+					},
+				},
+			},
+			exp: false,
+		},
+		{
+			vendor: 123,
+			restriction: &iabconsent.PubRestrictionEntry{
+				PurposeID:       3,
+				RestrictionType: iabconsent.PurposeFlatlyNotAllowed,
+				RestrictionsRange: []*iabconsent.RangeEntry{
+					{
+						StartVendorID: 120,
+						EndVendorID:   123,
+					},
+				},
+			},
+			exp: true,
+		},
+	}
+
+	for _, tc := range tcs {
+		c.Log(tc)
+		c.Check(tc.restriction.IsVendorRestricted(tc.vendor), check.Equals, tc.exp)
+	}
+}
+
 func (v *V2ParsedConsentSuite) TestParseCAV2(c *check.C) {
 	for k, v := range v2CAConsentFixtures {
 		c.Log(k)
