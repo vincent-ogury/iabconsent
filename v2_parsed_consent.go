@@ -354,6 +354,7 @@ func (p *V2ParsedConsent) EveryPurposeAllowed(ps []int) bool {
 
 // PurposeAllowed returns true if the passed purpose number exists in
 // the V2ParsedConsent, otherwise false.
+// Deprecated and replaced by PurposeAllowedForConsent
 func (p *V2ParsedConsent) PurposeAllowed(ps int) bool {
 	if !p.PurposesConsent[ps] {
 		return false
@@ -363,12 +364,47 @@ func (p *V2ParsedConsent) PurposeAllowed(ps int) bool {
 
 // VendorAllowed returns true if the ParsedConsent contains affirmative consent
 // for VendorID |v|.
+// Deprecated and replaced by VendorAllowedForConsent
 func (p *V2ParsedConsent) VendorAllowed(v int) bool {
 	if p.IsConsentRangeEncoding {
 		return inRangeEntries(v, p.ConsentedVendorsRange)
 	}
 
 	return p.ConsentedVendors[v]
+}
+
+// VendorAllowedForConsent returns true if the ParsedConsent contains affirmative consent
+// for VendorID |v|.
+func (p *V2ParsedConsent) VendorAllowedForConsent(v int) bool {
+	if p.IsConsentRangeEncoding {
+		return inRangeEntries(v, p.ConsentedVendorsRange)
+	}
+
+	return p.ConsentedVendors[v]
+}
+
+func (p *V2ParsedConsent) PurposeAllowedForConsent(ps int) bool {
+	if !p.PurposesConsent[ps] {
+		return false
+	}
+	return true
+}
+
+// VendorAllowedForConsent returns true if the ParsedConsent contains affirmative legitimate interest
+// for VendorID |v|.
+func (p *V2ParsedConsent) VendorAllowedForLI(v int) bool {
+	if p.IsInterestsRangeEncoding {
+		return inRangeEntries(v, p.InterestsVendorsRange)
+	}
+
+	return p.InterestsVendors[v]
+}
+
+func (p *V2ParsedConsent) PurposeAllowedForLI(ps int) bool {
+	if !p.PurposesLITransparency[ps] {
+		return false
+	}
+	return true
 }
 
 // PublisherRestricted returns true if any purpose in |ps| is
