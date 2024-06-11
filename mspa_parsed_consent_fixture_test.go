@@ -1,7 +1,7 @@
 package iabconsent_test
 
 import (
-	"github.com/StackAdapt/iabconsent"
+	"github.com/vincent-ogury/iabconsent"
 )
 
 // Test fixtures can be created here: https://iabgpp.com/

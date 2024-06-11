@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-check/check"
 
-	"github.com/StackAdapt/iabconsent"
+	"github.com/vincent-ogury/iabconsent"
 )
 
 type ParsedConsentSuite struct{}

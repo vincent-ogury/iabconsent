@@ -1,4 +1,4 @@
-module github.com/StackAdapt/iabconsent
+module github.com/vincent-ogury/iabconsent
 
 go 1.16
 

@@ -3,7 +3,7 @@ package iabconsent_test
 import (
 	"time"
 
-	"github.com/StackAdapt/iabconsent"
+	"github.com/vincent-ogury/iabconsent"
 )
 
 type consentType int

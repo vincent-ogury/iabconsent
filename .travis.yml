@@ -1,6 +1,6 @@
 language: go
 
-go_import_path: github.com/LiveRamp/iabconsent
+go_import_path: github.com/vincent-ogury/iabconsent
 
 go:
   - 1.8.x

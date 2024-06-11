@@ -1,12 +1,4 @@
 # iabconsent
-[![Build Status][ci]](https://travis-ci.com/LiveRamp/iabconsent)
-
-[ci]: https://travis-ci.com/LiveRamp/iabconsent.svg?branch=master "Build Status"
-
-[![Go Report Card][report]](https://goreportcard.com/report/github.com/LiveRamp/iabconsent)
-
-[report]: https://goreportcard.com/badge/github.com/LiveRamp/iabconsent "Go Report Card"
-
 A Golang implementation of the:
 - IAB Consent String 1.1 Spec
 - IAB Transparency and Consent String v2.0-v2.2
@@ -20,7 +12,7 @@ A Golang implementation of the:
 
 To install:
 ```
-go get -v github.com/LiveRamp/iabconsent
+go get -v github.com/vincent-ogury/iabconsent
 ```
 
 # Transparency and Consent Framework v1.1 + v2.0-v2.2
@@ -35,7 +27,7 @@ Example use:
 ```go
 package main
 
-import "github.com/StackAdapt/iabconsent"
+import "github.com/vincent-ogury/iabconsent"
 
 func main() {
     var consent = "COvzTO5OvzTO5BRAAAENAPCoALIAADgAAAAAAewAwABAAlAB6ABBFAAA"
@@ -78,7 +70,7 @@ Example use:
 ```go
 package main
 
-import "github.com/LiveRamp/iabconsent"
+import "github.com/vincent-ogury/iabconsent"
 
 func main() {
 	var consent = "DBABrGA~BVVqAAEABCA~BVoYYZoI~BVoYYYI~BVoYYQg~BVaGGGCA~BVoYYYQg"

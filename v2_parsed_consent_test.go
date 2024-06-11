@@ -3,7 +3,7 @@ package iabconsent_test
 import (
 	"github.com/go-check/check"
 
-	"github.com/StackAdapt/iabconsent"
+	"github.com/vincent-ogury/iabconsent"
 )
 
 type V2ParsedConsentSuite struct{}
