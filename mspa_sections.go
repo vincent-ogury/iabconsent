@@ -143,7 +143,9 @@ func (m *MspaUsNational) ParseConsent() (GppParsedConsent, error) {
 	if len(segments) > 1 {
 		var gppSubsectionConsent *GppSubSection
 		gppSubsectionConsent, _ = ParseGppSubSections(segments[1:])
-		p.Gpc = gppSubsectionConsent.Gpc
+		if gppSubsectionConsent != nil {
+			p.Gpc = gppSubsectionConsent.Gpc
+		}
 	}
 
 	return p, r.Err
